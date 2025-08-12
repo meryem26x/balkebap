@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Küresel Gıda Adaleti - Tam Sayfa</title>
+    <!-- Tailwind CSS'i CDN üzerinden dahil et -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Ana tasarım ve genel stil kuralları */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%234CAF50" width="1200" height="800"/><circle fill="%232196F3" cx="200" cy="200" r="50" opacity="0.7"/><circle fill="%23FF9800" cx="800" cy="150" r="30" opacity="0.8"/><circle fill="%23E91E63" cx="1000" cy="300" r="40" opacity="0.6"/></svg>');
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+        }
+
+        .section {
+            padding: 80px 0;
+            background: white;
+            margin: 40px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            border-radius: 2px;
+        }
+
+        .about-us {
+            padding: 80px 0;
+            background: white;
+            margin: 40px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center; /* Merkezi hizalama için */
+        }
+
+        .about-inner {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center; /* İçeriği merkezlemek için */
+        }
+
+        .circular-image-container {
+            flex-shrink: 0;
+            width: 280px;
+            height: 280px;
+            overflow: hidden;
+            border-radius: 50%;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            margin: 0 auto 2rem; /* Görselin altında boşluk bırakmak için */
+        }
+
+        .circular-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-text {
+            flex-grow: 1;
+            min-width: 300px;
+        }
+
+        .about-text h2 {
+            text-align: center;
+        }
+
+        .about-text p {
+            color: #555;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            transform: perspective(1000px) rotateY(0deg);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: perspective(1000px) rotateY(5deg) scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .demo-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .demo-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .app-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .demo-card {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .demo-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .calculator {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .calculate-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #4ECDC4, #44A08D);
+            color: white;
+            border-radius: 10px;
+            display: none;
+        }
+
+        /* İletişim bölümü için yeni CSS kodları */
+        .contact-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 40px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+        }
+        .contact-form-container, .contact-info, .map-container {
+            flex: 1 1 300px;
+        }
+        .contact-form-container h3, .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .submit-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .contact-info p {
+            margin-bottom: 1rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .map-container {
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Altbilgi için güncellenmiş CSS */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .social-links a {
+            color: #ccc;
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* SSS bölümü için yeni CSS */
+        .faq-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .faq-item details > summary {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #2c3e50;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-item details[open] > summary {
+            background-color: #e9ecef;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-weight: bold;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item details[open] summary::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: #555;
+            line-height: 1.8;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            100% { transform: translateY(-20px) rotate(180deg); opacity: 0.3; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .about-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-text h2 {
+                text-align: center;
+            }
+            .features {
+                grid-template-columns: 1fr;
+            }
+            .contact-content {
+                flex-direction: column;
+            }
+            .footer-content {
+                flex-direction: column;
+            }
+            .footer-links ul {
+                flex-direction: column;
+            }
+            .copyright {
+                order: 3; /* Telif hakkını ortaya al */
+                margin-top: 20px;
+            }
+            .social-links {
+                order: 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">🌍 Gıda Adaleti AI</div>
+            <ul class="nav-links">
+                <li><a href="#ana-sayfa">Ana Sayfa</a></li>
+                <li><a href="#hakkimizda">Hakkımızda</a></li>
+                <li><a href="#ozellikler">Özellikler</a></li>
+                <li><a href="#istatistikler">İstatistikler</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#fiyatlandirma">Fiyatlandırma</a></li>
+                <li><a href="#sss">Sıkça Sorulan Sorular</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="ana-sayfa" class="hero">
+            <div class="container">
+                <h1>AI ile Küresel Gıda Adaleti</h1>
+                <p>Yapay zeka teknolojisiyle gıda dağılımında adaleti sağlayıp, herkesin sağlıklı beslenme hakkına erişimini garanti altına alıyoruz. Gelecek nesiller için sürdürülebilir bir dünya inşa ediyoruz.</p>
+                <a href="#ozellikler" class="cta-button">Projeyi Keşfet</a>
+            </div>
+        </section>
+
+        <!-- Hakkımızda Bölümü -->
+        <section id="hakkimizda" class="section about-us">
+            <div class="container">
+                <div class="circular-image-container">
+                    <img src="https://lh3.googleusercontent.com/proxy/l2j9Rx0TTNOJMa8SssCM7Wdv1eCdthT_aWZba03SMwNO0Hv5K656ZcFbEMlrJz2oIt0_uCBXSc6xcfUFEFQPUIeGu8Cz3foePZfo4T1uhYkocug3aBoXtNmfFRZCkEbrUMos4NPw8v7F39HOYzmA9ofy4tg4P4oQrARUMxzlxWVAVoGHpA" alt="Gıda Adaleti Görseli" class="circular-image">
+                </div>
+                <div class="about-text">
+                    <h2>Hakkımızda</h2>
+                    <p>Küresel Gıda Adaleti Projesi olarak, yapay zeka teknolojisini kullanarak dünya genelindeki gıda israfı ve açlık sorununa yenilikçi çözümler getiriyoruz. Misyonumuz, üreticiden tüketiciye kadar tüm gıda zincirini optimize ederek herkes için adil ve sürdürülebilir bir beslenme geleceği yaratmaktır. Projemiz, veri bilimcileri, tarım mühendisleri ve beslenme uzmanlarından oluşan tutkulu bir ekip tarafından yürütülmektedir.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ozellikler" class="section">
+            <div class="container">
+                <h2>Proje Özellikleri</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌱</div>
+                        <h3>Üretici Desteği</h3>
+                        <p>AI destekli sistemlerle üreticilere rehberlik sağlayarak daha verimli ve sağlıklı ürün elde edilmesine yardımcı oluyoruz.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Kişisel Beslenme Takibi</h3>
+                        <p>Yaş, kilo ve sağlık durumuna göre kişiye özel beslenme planları oluşturarak optimal tüketimi destekliyoruz.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>AI Kontrol Sistemi</h3>
+                        <p>Ürünlerin kalitesi ve dağılımı yapay zeka algoritmaları ile sürekli izlenerek optimum verimlilik sağlanıyor.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>Küresel Dağılım</h3>
+                        <p>Nüfus takibi ve ihtiyaç analiziyle gıda kaynaklarının ülkelere adaletli şekilde dağıtılması planlanıyor.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Veri Analizi</h3>
+                        <p>Büyük veri analizi ile tüketim kalıpları, israf önleme ve kaynak optimizasyonu gerçekleştiriliyor.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎓</div>
+                        <h3>Bilinçlendirme</h3>
+                        <p>Toplumsal farkındalık yaratarak sürdürülebilir tüketim alışkanlıklarının geliştirilmesi hedefleniyor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="istatistikler" class="section">
+            <div class="container">
+                <h2>Küresel Gıda Durumu</h2>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">828M</div>
+                        <p>Kişi açlık çekiyor</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1/3</div>
+                        <p>Gıda israf ediliyor</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2B</div>
+                        <p>Kişi obezite ile mücadele ediyor</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">%70</div>
+                        <p>Verimlilik artışı mümkün</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo" class="section demo-section">
+            <div class="container">
+                <h2>AI Destekli Beslenme Hesaplayıcısı</h2>
+                <div class="demo-container">
+                    <div class="calculator">
+                        <h3>Kişisel Beslenme İhtiyacı Hesaplama</h3>
+                        <div class="input-group">
+                            <label for="yas">Yaş:</label>
+                            <input type="number" id="yas" min="1" max="120" placeholder="Yaşınızı girin">
+                        </div>
+                        <div class="input-group">
+                            <label for="kilo">Kilo (kg):</label>
+                            <input type="number" id="kilo" min="1" max="300" placeholder="Kilonuzu girin">
+                        </div>
+                        <div class="input-group">
+                            <label for="boy">Boy (cm):</label>
+                            <input type="number" id="boy" min="50" max="250" placeholder="Boyunuzu girin">
+                        </div>
+                        <div class="input-group">
+                            <label for="cinsiyet">Cinsiyet:</label>
+                            <select id="cinsiyet">
+                                <option value="">Seçin</option>
+                                <option value="erkek">Erkek</option>
+                                <option value="kadin">Kadın</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="aktivite">Aktivite Seviyesi:</label>
+                            <select id="aktivite">
+                                <option value="">Seçin</option>
+                                <option value="1.2">Sedanter (Hareketsiz)</option>
+                                <option value="1.375">Hafif Aktif</option>
+                                <option value="1.55">Orta Aktif</option>
+                                <option value="1.725">Çok Aktif</option>
+                                <option value="1.9">Aşırı Aktif</option>
+                            </select>
+                        </div>
+                        <button class="calculate-btn" onclick="hesaplaIhtiyac()">Beslenme İhtiyacını Hesapla</button>
+                        <div class="result" id="sonuc">
+                            <h4>Günlük Beslenme İhtiyacınız:</h4>
+                            <p id="kalori-sonuc"></p>
+                            <p id="protein-sonuc"></p>
+                            <p id="karbonhidrat-sonuc"></p>
+                            <p id="yag-sonuc"></p>
+                            <p id="oneri"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="app-demo">
+                        <div class="demo-card">
+                            <h4>🎯 Akıllı Hedef Belirleme</h4>
+                            <p>AI, kişisel verilerinize göre gerçekçi beslenme hedefleri belirler ve sürekli günceller.</p>
+                        </div>
+                        <div class="demo-card">
+                            <h4>📈 İlerleme Takibi</h4>
+                            <p>Günlük tüketiminizi takip ederek sağlık hedeflerinize ne kadar yaklaştığınızı gösterir.</p>
+                        </div>
+                        <div class="demo-card">
+                            <h4>🌟 Kişiselleştirilmiş Öneriler</h4>
+                            <p>Sağlık durumunuz ve tercihlerinize uygun beslenme önerileri alırsınız.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Proje Vizyonu</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; text-align: center;">
+                    <div>
+                        <h3>🎯 Hedefimiz</h3>
+                        <p>2030 yılına kadar küresel açlığı sona erdirmek ve herkesin sağlıklı gıdaya erişimini sağlamak.</p>
+                    </div>
+                    <div>
+                        <h3>🚀 Misyonumuz</h3>
+                        <p>Yapay zeka teknolojisini kullanarak gıda sistemlerini daha adil, sürdürülebilir ve verimli hale getirmek.</p>
+                    </div>
+                    <div>
+                        <h3>💡 İnovasyonumuz</h3>
+                        <p>Kişiselleştirilmiş beslenme planları ve akıllı dağıtım sistemleri ile gıda israfını minimize etmek.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fiyatlandırma bölümü -->
+        <section id="fiyatlandirma" class="section bg-white p-8 rounded-xl shadow-lg">
+            <div class="container mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800">Fiyatlandırma Planlarımız</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+                        İhtiyaçlarınıza en uygun planı seçin ve hemen başlayın. Esnek ve uygun fiyatlı seçeneklerle işinizi büyütün.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Kart 1: Başlangıç Planı -->
+                    <div class="bg-yellow-100 p-8 rounded-xl shadow-md transition-transform transform hover:scale-105">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Başlangıç Planı</h3>
+                        <p class="text-gray-600 mb-4">Küçük işletmeler ve bireysel kullanıcılar için ideal.</p>
+                        <div class="text-4xl font-extrabold text-gray-900 mb-6">
+                            ₺49<span class="text-lg font-medium text-gray-600">/ay</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-700 mb-6">
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-yellow-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Temel Özellikler
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-yellow-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                10 GB Depolama
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-yellow-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                24/7 Destek
+                            </li>
+                        </ul>
+                        <button class="w-full bg-yellow-500 text-white font-bold py-3 px-6 rounded-md shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50">
+                            Şimdi Başla
+                        </button>
+                    </div>
+                    <!-- Kart 2: Profesyonel Plan -->
+                    <div class="bg-yellow-100 p-8 rounded-xl shadow-md transition-transform transform hover:scale-105">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Profesyonel Plan</h3>
+                        <p class="text-gray-600 mb-4">Gelişen işletmeler ve ekipler için.</p>
+                        <div class="text-4xl font-extrabold text-gray-900 mb-6">
+                            ₺99<span class="text-lg font-medium text-gray-600">/ay</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-700 mb-6">
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-yellow-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Gelişmiş Özellikler
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-yellow-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                50 GB Depolama
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-yellow-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Öncelikli Destek
+                            </li>
+                        </ul>
+                        <button class="w-full bg-yellow-500 text-white font-bold py-3 px-6 rounded-md shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50">
+                            Şimdi Başla
+                        </button>
+                    </div>
+                    <!-- Kart 3: Kurumsal Plan -->
+                    <div class="bg-yellow-100 p-8 rounded-xl shadow-md transition-transform transform hover:scale-105">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Kurumsal Plan</h3>
+                        <p class="text-gray-600 mb-4">Büyük ölçekli şirketler için özel çözümler.</p>
+                        <div class="text-4xl font-extrabold text-gray-900 mb-6">
+                            ₺299<span class="text-lg font-medium text-gray-600">/ay</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-700 mb-6">
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-yellow-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Özel Özellikler
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-yellow-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Sınırsız Depolama
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-yellow-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                7/24 Özel Yöneticiler
+                            </li>
+                        </ul>
+                        <button class="w-full bg-yellow-500 text-white font-bold py-3 px-6 rounded-md shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50">
+                            Şimdi Başla
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sıkça Sorulan Sorular bölümü -->
+        <section id="sss" class="section bg-white p-8 rounded-xl shadow-lg">
+            <div class="container mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800">Sıkça Sorulan Sorular</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+                        Aklınıza takılan soruların cevaplarını burada bulabilirsiniz.
+                    </p>
+                </div>
+                <div class="space-y-4">
+                    <div class="faq-item">
+                        <details>
+                            <summary>Küresel Gıda Adaleti AI projesi nedir?</summary>
+                            <div class="faq-answer">
+                                <p>Bu proje, yapay zeka ve veri analizi teknolojilerini kullanarak küresel gıda israfını azaltmayı, gıda dağıtımını optimize etmeyi ve herkesin sağlıklı gıdaya erişimini sağlamayı hedefleyen yenilikçi bir platformdur.</p>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="faq-item">
+                        <details>
+                            <summary>Beslenme hesaplayıcısı nasıl çalışır?</summary>
+                            <div class="faq-answer">
+                                <p>Hesaplayıcımız, yaş, kilo, boy, cinsiyet ve aktivite seviyesi gibi girdiğiniz verilere dayanarak günlük kalori ve makro besin (protein, karbonhidrat, yağ) ihtiyaçlarınızı belirler. Bu verilerle kişiselleştirilmiş beslenme önerileri sunar.</p>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="faq-item">
+                        <details>
+                            <summary>Hangi planı seçmeliyim?</summary>
+                            <div class="faq-answer">
+                                <p><strong>Başlangıç Planı</strong> bireysel kullanıcılar ve küçük ölçekli projeler için uygundur. <strong>Profesyonel Plan</strong> daha fazla depolama ve öncelikli destek arayan ekipler için idealdir. <strong>Kurumsal Plan</strong> ise sınırsız depolama ve özel yönetici desteği gerektiren büyük şirketler için tasarlanmıştır.</p>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="faq-item">
+                        <details>
+                            <summary>Ödeme yöntemleri nelerdir?</summary>
+                            <div class="faq-answer">
+                                <p>Kredi kartı, banka havalesi ve PayPal gibi çeşitli ödeme yöntemlerini kabul ediyoruz. Güvenli ödeme altyapımız ile tüm işlemleriniz güvence altındadır.</p>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="faq-item">
+                        <details>
+                            <summary>Projenize nasıl katkıda bulunabilirim?</summary>
+                            <div class="faq-answer">
+                                <p>Projeye destek olmak için fiyatlandırma planlarımızdan birini seçebilir, gönüllü olarak ekibimize katılabilir veya sosyal medya hesaplarımızdan bizi takip ederek farkındalık yaratmamıza yardımcı olabilirsiniz.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- İletişim bölümü -->
+        <section id="iletisim" class="contact-section">
+            <div class="container">
+                <h2>Bizimle İletişime Geçin</h2>
+                <div class="contact-content">
+                    <div class="contact-form-container">
+                        <h3>Sorularınız mı Var?</h3>
+                        <form class="contact-form">
+                            <input type="text" placeholder="Adınız Soyadınız" required>
+                            <input type="email" placeholder="E-posta Adresiniz" required>
+                            <textarea placeholder="Mesajınız" required></textarea>
+                            <button type="submit" class="submit-btn">Gönder</button>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <h3>İletişim Bilgileri</h3>
+                        <p><strong>Adres:</strong> Örnek Caddesi No: 123, Örnek Şehir, Dünya</p>
+                        <p><strong>E-posta:</strong> info@gidaadaleti.ai</p>
+                        <p><strong>Telefon:</strong> +90 (555) 123 45 67</p>
+                    </div>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.684157077685!2d29.00845331568285!3d41.033621979298416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab8411b22e11d%3A0xc0f12c8b0b5e9130!2sIstanbul%20Teknik%20%C3%9Cniversitesi%20Rekt%C3%B6rl%C3%BCk!5e0!3m2!1str!2str!4v1625067201889!5m2!1str!2str" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Güncellenmiş Altbilgi -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#ana-sayfa">Ana Sayfa</a></li>
+                    <li><a href="#hakkimizda">Hakkımızda</a></li>
+                    <li><a href="#ozellikler">Özellikler</a></li>
+                    <li><a href="#fiyatlandirma">Fiyatlandırma</a></li>
+                    <li><a href="#sss">Sıkça Sorulan Sorular</a></li>
+                    <li><a href="#iletisim">İletişim</a></li>
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Küresel Gıda Adaleti Projesi. Tüm hakları saklıdır.</p>
+            </div>
+            <div class="social-links">
+                <a href="#" title="Email">📧</a>
+                <a href="#" title="LinkedIn">💼</a>
+                <a href="#" title="Twitter">🐦</a>
+                <a href="#" title="GitHub">💻</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .stat-item, .demo-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Beslenme hesaplayıcısı fonksiyonu
+        function hesaplaIhtiyac() {
+            const yas = parseInt(document.getElementById('yas').value);
+            const kilo = parseInt(document.getElementById('kilo').value);
+            const boy = parseInt(document.getElementById('boy').value);
+            const cinsiyet = document.getElementById('cinsiyet').value;
+            const aktivite = parseFloat(document.getElementById('aktivite').value);
+
+            if (!yas || !kilo || !boy || !cinsiyet || !aktivite) {
+                // Modalsız uyarı mesajı için özel bir UI kullanılmalıdır.
+                alert('Lütfen tüm alanları doldurun.');
+                return;
+            }
+
+            // BMR hesaplama (Mifflin-St Jeor formülü)
+            let bmr;
+            if (cinsiyet === 'erkek') {
+                bmr = 88.362 + (13.397 * kilo) + (4.799 * boy) - (5.677 * yas);
+            } else {
+                bmr = 447.593 + (9.247 * kilo) + (3.098 * boy) - (4.330 * yas);
+            }
+
+            // Günlük kalori ihtiyacı
+            const gunlukKalori = Math.round(bmr * aktivite);
+            
+            // Makro besin ögeleri
+            const protein = Math.round(kilo * 1.2); // gram
+            const karbonhidrat = Math.round((gunlukKalori * 0.45) / 4); // gram
+            const yag = Math.round((gunlukKalori * 0.25) / 9); // gram
+
+            // BMI hesaplama
+            const bmi = (kilo / ((boy/100) * (boy/100))).toFixed(1);
+            
+            let bmiDurum, oneri;
+            if (bmi < 18.5) {
+                bmiDurum = "Zayıf";
+                oneri = "Sağlıklı kilo almak için protein ağırlıklı beslenme öneriyoruz.";
+            } else if (bmi < 25) {
+                bmiDurum = "Normal";
+                oneri = "Mükemmel! Mevcut kilonuzu korumak için dengeli beslenmeye devam edin.";
+            } else if (bmi < 30) {
+                bmiDurum = "Fazla kilolu";
+                oneri = "Sağlıklı kilo vermek için kalori alımınızı kontrol etmenizi öneriyoruz.";
+            } else {
+                bmiDurum = "Obez";
+                oneri = "Bir beslenme uzmanına danışarak sağlıklı bir kilo verme planı oluşturmanızı öneriyoruz.";
+            }
+
+            // Sonuçları göster
+            document.getElementById('kalori-sonuc').innerHTML = `<strong>Günlük Kalori İhtiyacı:</strong> ${gunlukKalori} kcal`;
+            document.getElementById('protein-sonuc').innerHTML = `<strong>Protein İhtiyacı:</strong> ${protein} g`;
+            document.getElementById('karbonhidrat-sonuc').innerHTML = `<strong>Karbonhidrat İhtiyacı:</strong> ${karbonhidrat} g`;
+            document.getElementById('yag-sonuc').innerHTML = `<strong>Yağ İhtiyacı:</strong> ${yag} g`;
+            document.getElementById('oneri').innerHTML = `<strong>BMI:</strong> ${bmi} (${bmiDurum})<br><strong>AI Önerisi:</strong> ${oneri}`;
+            
+            document.getElementById('sonuc').style.display = 'block';
+            document.getElementById('sonuc').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Typing effect for hero title
+        function typeWriter() {
+            const text = "AI ile Küresel Gıda Adaleti";
+            const element = document.querySelector('.hero h1');
+            if (element) {
+                element.innerHTML = '';
+                let i = 0;
+                
+                function type() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, 100);
+                    }
+                }
+                
+                setTimeout(type, 500);
+            }
+        }
+
+        window.addEventListener('load', typeWriter);
+
+        // Dynamic stats counter
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = stat.textContent;
+                let current = 0;
+                const increment = target.includes('M') ? 10000000 : 
+                                target.includes('B') ? 100000000 :
+                                target.includes('/') ? 0.01 :
+                                target.includes('%') ? 1 : 1;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (target.includes('M')) {
+                        stat.textContent = Math.round(current / 1000000) + 'M';
+                        if (current >= 828000000) clearInterval(timer);
+                    } else if (target.includes('B')) {
+                        stat.textContent = Math.round(current / 1000000000) + 'B';
+                        if (current >= 2000000000) clearInterval(timer);
+                    } else if (target.includes('%')) {
+                        stat.textContent = Math.round(current) + '%';
+                        if (current >= 70) clearInterval(timer);
+                    } else {
+                        stat.textContent = '1/3';
+                        clearInterval(timer);
+                    }
+                }, 50);
+            });
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.getElementById('istatistikler');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        function createFloatingElements() {
+            const body = document.body;
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: fixed;
+                    width: ${Math.random() * 6 + 2}px;
+                    height: ${Math.random() * 6 + 2}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 1;
+                    left: ${Math.random() * 100}vw;
+                    top: ${Math.random() * 100}vh;
+                    animation: float ${Math.random() * 3 + 2}s ease-in-out infinite alternate;
+                `;
+                body.appendChild(particle);
+            }
+        }
+        
+        createFloatingElements();
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                this.style.color = 'white';
+                this.querySelector('.feature-icon').style.background = 'rgba(255, 255, 255, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.background = 'white';
+                this.style.color = '#333';
+                this.querySelector('.feature-icon').style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+            });
+        });
+
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        `;
+        document.body.appendChild(progressBar);
+
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+
+        const mobileMenuBtn = document.createElement('button');
+        mobileMenuBtn.innerHTML = '☰';
+        mobileMenuBtn.style.cssText = `
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            position: absolute;
+            right: 20px;
+        `;
+        
+        function setupMobileMenu() {
+            const nav = document.querySelector('nav');
+            const navLinks = document.querySelector('.nav-links');
+            if (window.innerWidth <= 768) {
+                nav.appendChild(mobileMenuBtn);
+                mobileMenuBtn.style.display = 'block';
+                navLinks.style.display = 'none';
+
+                mobileMenuBtn.addEventListener('click', () => {
+                    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                });
+            } else {
+                if (nav.contains(mobileMenuBtn)) {
+                    nav.removeChild(mobileMenuBtn);
+                }
+                navLinks.style.display = 'flex';
+            }
+        }
+        
+        window.addEventListener('resize', setupMobileMenu);
+        window.addEventListener('load', setupMobileMenu);
+        
+        // Nutritional tips data
+        const nutritionTips = [
+            "🥕 Günde en az 5 porsiyon meyve ve sebze tüketin.",
+            "💧 Günde en az 8 bardak su için.",
+            "🌾 Tam tahıllı ürünleri tercih edin.",
+            "🐟 Haftada 2-3 kez balık tüketin.",
+            "🥜 Sağlıklı yağları (fındık, zeytinyağı) tercih edin.",
+            "🍎 İşlenmiş gıdalardan kaçının.",
+            "🥛 Kalsiyum açısından zengin gıdalar tüketin.",
+            "🍃 Organik ürünleri tercih edin."
+        ];
+
+        // Show random tip every 10 seconds
+        setInterval(() => {
+            const randomTip = nutritionTips[Math.floor(Math.random() * nutritionTips.length)];
+            const tipElement = document.createElement('div');
+            tipElement.innerHTML = randomTip;
+            tipElement.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: linear-gradient(45deg, #4ECDC4, #44A08D);
+                color: white;
+                padding: 15px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                z-index: 1000;
+                max-width: 300px;
+                animation: slideIn 0.5s ease-out;
+            `;
+            
+            document.body.appendChild(tipElement);
+            
+            setTimeout(() => {
+                tipElement.style.animation = 'slideOut 0.5s ease-in forwards';
+                setTimeout(() => tipElement.remove(), 500);
+            }, 5000);
+        }, 30000);
+    </script>
+</body>
+</html>
